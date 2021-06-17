@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html >
+<head>
+<title>Recommendation System</title>
+<style>
+body{
+        background-image:url("static/background1.jpg");
+        background-attachment: fixed;
+		background-repeat: no-repeat;
+		background-size: cover;
+    }
+</style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js">  
+    </script>  
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js">  
+    </script>  
+    
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css"
+        rel="stylesheet" type="text/css" />  	
+  
+</head>
+
+<body id="content">
+ <div class="login">
+	<center><h1>Video Recommendation System</h1></center>
+    <form action="{{ url_for('recommendation')}}"method="post">
+    	<input type="text" name="input" placeholder="select the movie from database" required="required" id="tags" style="background-color: #ffffff;border-color:#ffffff;width: 60%;color: #181818"/>
+		<br>
+		<br>
+        <button type="submit" class="btn btn-primary btn-block btn-large" style="background-color: #ffffff;text-align: center;width:120px;">Enter</button>
+    </form>
+	<script>
+  $( function() {
+    var availableTags = [
+        {% for a in title %}
+            "{{a}}",
+        {% endfor %}
+    ];
+    $( "#tags" ).autocomplete({
+      source: availableTags
+    });
+  } );
+  </script>
+  
+ </div>
+  
+</body>
+</html>
